@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:PSD="http://www.gamingstandards.com/emdi/schemas/v1b/PSD" xmlns="http://mediaDisplay.igt.com" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:CCI="http://www.gamingstandards.com/emdi/schemas/v1b/CCI" targetNamespace="http://www.gamingstandards.com/emdi/schemas/v1b/PSD" elementFormDefault="qualified" attributeFormDefault="qualified" version="2014-04-04 v3.0">
+	<xs:import namespace="http://mediaDisplay.igt.com" schemaLocation="mdInclude.xsd"/>
+	<xs:import namespace="http://www.gamingstandards.com/emdi/schemas/v1b/CCI" schemaLocation="mdIncludeExtCCI.xsd"/>
+	<xs:import namespace="http://mediaDisplay.igt.com" schemaLocation="mdCabinet.xsd"/>
+	<!--Attribute Groups-->
+	<xs:attributeGroup name="p_playerSessionDataAck">
+		<xs:annotation>
+			<xs:documentation>playerSessionDataAck Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="idReaderId" type="CCI:t_deviceId" use="required"/>
+		<xs:attribute name="idNumber" type="t_idNumber" use="required"/>
+		<xs:attribute name="startDateTime" type="xs:dateTime" use="required"/>
+	</xs:attributeGroup>
+	<!--Complex Data Types-->
+	<xs:complexType name="c_getPlayerSessionData">
+		<xs:annotation>
+			<xs:documentation>getPlayerSessionData Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="c_baseCommand"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_playerSessionDataAck">
+		<xs:annotation>
+			<xs:documentation>playerSessionDataAck Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="c_baseCommand">
+				<xs:attributeGroup ref="PSD:p_playerSessionDataAck"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--Elements-->
+	<xs:element name="getPlayerSessionData">
+		<xs:annotation>
+			<xs:documentation>getPlayerSessionData Command.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="PSD:c_getPlayerSessionData">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="playerSessionDataAck">
+		<xs:annotation>
+			<xs:documentation>playerSessionDataAck Command.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="PSD:c_playerSessionDataAck">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--End of Extension.-->
+</xs:schema>

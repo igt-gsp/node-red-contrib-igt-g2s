@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2016 rel. 2 (x64) (http://www.altova.com) by Ethan Tower (Tower Coastal Advisors) -->
+<xs:schema xmlns:GCS="http://mediaDisplay.igt.com/GCS" xmlns="http://mediaDisplay.igt.com" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:CCI="http://www.gamingstandards.com/emdi/schemas/v1b/CCI" xmlns:RCL="http://www.gamingstandards.com/emdi/schemas/v1b/RCL" targetNamespace="http://mediaDisplay.igt.com/GCS" elementFormDefault="qualified" attributeFormDefault="qualified" version="2019-04-11 v3.0">
+	<xs:import namespace="http://www.gamingstandards.com/emdi/schemas/v1b/CCI" schemaLocation="mdImportExtCCI.xsd"/>
+	<xs:import namespace="http://www.gamingstandards.com/emdi/schemas/v1b/RCL" schemaLocation="mdEventHandlerExtRCL.xsd"/>
+	<xs:import namespace="http://mediaDisplay.igt.com" schemaLocation="mdInclude.xsd"/>
+	<!--Simple Data Types-->
+	<xs:simpleType name="t_extensibleList">
+		<xs:annotation>
+			<xs:documentation>Extensible enumeration list - union.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="t_uniqueIdentifier64"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_comboSelectedBase">
+		<xs:annotation>
+			<xs:documentation>comboSelected - Base Enumerations.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_notSupported"/>
+			<xs:enumeration value="G2S_byPlayer"/>
+			<xs:enumeration value="G2S_byEGM"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_comboSelected">
+		<xs:annotation>
+			<xs:documentation>comboSelected - Extensible List.</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="GCS:t_comboSelectedBase GCS:t_extensibleList"/>
+	</xs:simpleType>
+	<!--Extension to existing command-->
+	<xs:attributeGroup name="p_cabinetStatusExtGCS">
+		<xs:annotation>
+			<xs:documentation>cabinetStatus command extension</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="comboSelected" type="GCS:t_comboSelected" use="optional" default="G2S_notSupported"/>
+		<xs:attribute name="selGamePlayId" type="CCI:t_deviceId" use="optional" default="0"/>
+		<xs:attribute name="selThemeId" type="RCL:t_themeId" use="optional" default="G2S_none"/>
+		<xs:attribute name="selPaytableId" type="RCL:t_paytableId" use="optional" default="G2S_none"/>
+		<xs:attribute name="selDenomId" type="RCL:t_denomId" use="optional" default="0"/>
+	</xs:attributeGroup>
+	<!--End of extension-->
+</xs:schema>

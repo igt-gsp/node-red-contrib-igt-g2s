@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:CCI="http://www.gamingstandards.com/emdi/schemas/v1b/CCI" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://mediaDisplay.igt.com" targetNamespace="http://www.gamingstandards.com/emdi/schemas/v1b/CCI" elementFormDefault="qualified" attributeFormDefault="qualified" version="2013-08-12 v1b1">
+	<xs:import namespace="http://mediaDisplay.igt.com" schemaLocation="mdInclude.xsd"/>
+	<!--Simple Data Types-->
+	<xs:simpleType name="t_groupNameExtCCI">
+		<xs:annotation>
+			<xs:documentation>groupName Enumeration Extension.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="t_uniqueIdentifier64">
+			<xs:enumeration value="G2S_ContentToContent"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--End of Extension.-->
+</xs:schema>

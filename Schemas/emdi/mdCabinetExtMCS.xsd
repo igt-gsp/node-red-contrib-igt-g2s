@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:MCS="http://www.gamingstandards.com/emdi/schemas/v1b/MCS" xmlns="http://mediaDisplay.igt.com" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.gamingstandards.com/emdi/schemas/v1b/MCS" elementFormDefault="qualified" attributeFormDefault="qualified" version="2014-04-04 v3.0">
+	<xs:import namespace="http://mediaDisplay.igt.com" schemaLocation="mdInclude.xsd"/>
+	<xs:import namespace="http://mediaDisplay.igt.com" schemaLocation="mdCabinet.xsd"/>
+	<!--Complex Data Types-->
+	<xs:complexType name="c_getCardStateList">
+		<xs:annotation>
+			<xs:documentation>getCardStateList Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="c_baseCommand"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_cardStatusList">
+		<xs:annotation>
+			<xs:documentation>cardStatusList Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="cardStatus" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--Elements-->
+	<xs:element name="getCardStateList">
+		<xs:annotation>
+			<xs:documentation>getCardStateList Command.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="MCS:c_getCardStateList">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cardStatusList">
+		<xs:annotation>
+			<xs:documentation>cardStatusList Command.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="MCS:c_cardStatusList">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--End of Extension.-->
+</xs:schema>
